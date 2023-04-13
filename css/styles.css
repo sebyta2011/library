@@ -50,11 +50,17 @@ label {
   justify-content: center;
 }
 
-.book-post {
+[class^="book-post-"] {
   background-color: rgb(204, 79, 79);
+  display: grid;
   height: 100px;
   padding-top: 10px;
   padding-left: 10px;
   margin: 10px;
   border-radius: 10px;
+}
+
+[class^="del-button-"] {
+  width: 60px;
+  height: 20px;
 }

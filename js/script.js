@@ -36,6 +36,8 @@ form.addEventListener("submit", function (event) {
     let delButton = document.createElement("button");
     const del = document.getElementsByClassName("del-button");
 
+    delButton.textContent = "Delete";
+
     delButton.classList.add(`del-button-${i}`);
     bookPost.classList.add(`book-post-${i}`);
 
