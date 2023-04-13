@@ -20,7 +20,36 @@ form.addEventListener("submit", function (event) {
   const author = formData.get("author");
   const pages = formData.get("pages");
   const read = formData.get("has-read");
+  let bookContainer = document.getElementById("books-container");
 
   addBookToLibrary(title, author, pages, read);
+
+  while (bookContainer.firstChild) {
+    bookContainer.removeChild(bookContainer.firstChild);
+  }
+
+  myLibrary.forEach(function (book) {
+    let bookPost = document.createElement("div");
+    let bookInfo = document.createTextNode(`Title: ${book.title}`);
+
+    bookPost.appendChild(bookInfo);
+    bookContainer.appendChild(bookPost);
+  });
+
   form.reset();
 });
+
+// myLibrary.forEach(function (book) {
+//     let bookContainer = document.getElementById("books-container");
+//     let bookPost = document.createElement("div");
+//     let bookInfo = document.createTextNode(`Title: ${book.title}`);
+
+//     bookPost.appendChild(bookInfo);
+//     bookContainer.appendChild(bookPost);
+//   });
+
+// const lastIndex = myLibrary[myLibrary.length - 1];
+
+// hacer un array que sea igual al index 1 del array libreria
+
+// let index1 = myArray[myArray.length - 1]
