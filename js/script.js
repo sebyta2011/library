@@ -19,9 +19,12 @@ form.addEventListener("submit", function (event) {
   const title = formData.get("book-title");
   const author = formData.get("author");
   const pages = formData.get("pages");
-  const read = formData.get("has-read");
+  let read = formData.get("has-read");
   let bookContainer = document.getElementById("books-container");
 
+  if (!read) {
+    read = "no";
+  }
   addBookToLibrary(title, author, pages, read);
 
   while (bookContainer.firstChild) {
@@ -30,7 +33,11 @@ form.addEventListener("submit", function (event) {
 
   myLibrary.forEach(function (book) {
     let bookPost = document.createElement("div");
-    let bookInfo = document.createTextNode(`Title: ${book.title}`);
+    bookPost.classList.add("book-post");
+    let lineBreak = document.createElement("br");
+    let bookInfo = document.createTextNode(
+      `Title: ${book.title}\nAuthor: ${book.author}\nNumber of pages: ${book.pages}\nHave you read it?: ${book.read}`
+    );
 
     bookPost.appendChild(bookInfo);
     bookContainer.appendChild(bookPost);
@@ -38,18 +45,3 @@ form.addEventListener("submit", function (event) {
 
   form.reset();
 });
-
-// myLibrary.forEach(function (book) {
-//     let bookContainer = document.getElementById("books-container");
-//     let bookPost = document.createElement("div");
-//     let bookInfo = document.createTextNode(`Title: ${book.title}`);
-
-//     bookPost.appendChild(bookInfo);
-//     bookContainer.appendChild(bookPost);
-//   });
-
-// const lastIndex = myLibrary[myLibrary.length - 1];
-
-// hacer un array que sea igual al index 1 del array libreria
-
-// let index1 = myArray[myArray.length - 1]
