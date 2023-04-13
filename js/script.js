@@ -31,17 +31,28 @@ form.addEventListener("submit", function (event) {
     bookContainer.removeChild(bookContainer.firstChild);
   }
 
-  myLibrary.forEach(function (book) {
+  for (let i = 0; i < myLibrary.length; i++) {
     let bookPost = document.createElement("div");
-    bookPost.classList.add("book-post");
-    let lineBreak = document.createElement("br");
+    let delButton = document.createElement("button");
+    const del = document.getElementsByClassName("del-button");
+
+    delButton.classList.add(`del-button-${i}`);
+    bookPost.classList.add(`book-post-${i}`);
+
+    delButton.type = "button";
     let bookInfo = document.createTextNode(
-      `Title: ${book.title}\nAuthor: ${book.author}\nNumber of pages: ${book.pages}\nHave you read it?: ${book.read}`
+      `Title: ${myLibrary[i].title}\nAuthor: ${myLibrary[i].author}\nNumber of pages: ${myLibrary[i].pages}\nHave you read it?: ${myLibrary[i].read}`
     );
 
     bookPost.appendChild(bookInfo);
+    bookPost.appendChild(delButton);
     bookContainer.appendChild(bookPost);
-  });
+    let bookPostC = document.querySelector(`.book-post-${i}`);
 
-  form.reset();
+    delButton.addEventListener("click", function (event) {
+      bookPostC.remove();
+    });
+
+    form.reset();
+  }
 });
