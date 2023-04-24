@@ -1,10 +1,19 @@
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+// function Book(title, author, pages, read) {
+//   this.title = title;
+//   this.author = author;
+//   this.pages = pages;
+//   this.read = read;
+// }
+
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -40,6 +49,7 @@ form.addEventListener("submit", function (event) {
 
     delButton.classList.add(`del-button-${i}`);
     bookPost.classList.add(`book-post-${i}`);
+    bookPost.setAttribute("title", `${myLibrary[i].title}`);
 
     delButton.type = "button";
     let bookInfo = document.createTextNode(
@@ -53,6 +63,10 @@ form.addEventListener("submit", function (event) {
 
     delButton.addEventListener("click", function (event) {
       bookPostC.remove();
+      let bookIndex = myLibrary.findIndex(
+        (ricardo) => ricardo.title == bookPostC.getAttribute("title")
+      );
+      myLibrary.splice(bookIndex, 1);
     });
 
     form.reset();
